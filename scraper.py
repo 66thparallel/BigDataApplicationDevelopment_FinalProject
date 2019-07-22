@@ -70,23 +70,8 @@ def parse(session, url):
 
     offset = 0
 
-    # uncomment to scrap all reviews
-    # while(True):
-    #     subpage_url = url_template.format(offset)
-
-    #     subpage_items = parse_reviews(session, subpage_url)
-    #     if not subpage_items:
-    #         break
-
-    #     items += subpage_items
-
-    #     if len(subpage_items) < 5:
-    #         break
-
-    #     offset += 10
-
-    #scrape only 20 page
-    for i in range(20):
+    #uncomment to scrap all reviews
+    while(True):
         subpage_url = url_template.format(offset)
 
         subpage_items = parse_reviews(session, subpage_url)
@@ -99,7 +84,22 @@ def parse(session, url):
             break
 
         offset += 10
-    return items
+
+    #scrape only 20 page
+    # for i in range(20):
+    #     subpage_url = url_template.format(offset)
+
+    #     subpage_items = parse_reviews(session, subpage_url)
+    #     if not subpage_items:
+    #         break
+
+    #     items += subpage_items
+
+    #     if len(subpage_items) < 5:
+    #         break
+
+    #     offset += 10
+    # return items
 
 def get_reviews_ids(soup):
 
@@ -208,7 +208,7 @@ DB_COLUMN1 = 'review_date'
 
 
 ##########modify this section to scrap from different city
-prefix = "https://www.tripadvisor.com/Attractions_Review-g186338-"
+prefix = "https://www.tripadvisor.com/Attraction_Review-g186338-"
 postfix = "-London_England.html"
 topElevenToTwenty = ["d188159-Reviews-St_Paul_s_Cathedral",
  "d548817-Reviews-Chelsea_FC_Stadium_Tour_Museum",
