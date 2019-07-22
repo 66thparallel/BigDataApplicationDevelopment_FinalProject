@@ -90,7 +90,7 @@ def parse(session, url):
         offset += 10
 
     #scrape only 20 page
-    # for i in range(20):
+    # for i in range(10):
     #     subpage_url = url_template.format(offset)
 
     #     subpage_items = parse_reviews(session, subpage_url)
@@ -103,7 +103,7 @@ def parse(session, url):
     #         break
 
     #     offset += 10
-    # return items
+    return items
 
 def get_reviews_ids(soup):
 
