@@ -70,6 +70,7 @@ def parse(session, url):
 
     offset = 0
 
+    # uncomment to scrap all reviews
     # while(True):
     #     subpage_url = url_template.format(offset)
 
@@ -84,6 +85,7 @@ def parse(session, url):
 
     #     offset += 10
 
+    #scrape only 20 page
     for i in range(20):
         subpage_url = url_template.format(offset)
 
@@ -204,9 +206,21 @@ def write_in_csv(items, filename='results.csv',
 DB_COLUMN = 'review_body'
 DB_COLUMN1 = 'review_date'
 
-start_urls = [
-    'https://www.tripadvisor.com/Attraction_Review-g186338-d188159-Reviews-St_Paul_s_Cathedral-London_England.html',
-]
+
+##########modify this section to scrap from different city
+prefix = "https://www.tripadvisor.com/Attractions_Review-g186338-"
+postfix = "-London_England.html"
+topElevenToTwenty = ["d188159-Reviews-St_Paul_s_Cathedral",
+ "d548817-Reviews-Chelsea_FC_Stadium_Tour_Museum",
+ "d211708-Reviews-Houses_of_Parliament",
+ "d188126-Reviews-St_James_s_Park",
+ "d189047-Reviews-Covent_Garden",
+ "d187577-Reviews-Camden_Market",
+ "d187726-Reviews-Shakespeare_s_Globe_Theatre",
+ "d7398968-Reviews-Sky_Garden",
+ "d3539289-Reviews-The_View_from_The_Shard",
+ "d187601-Reviews-Greenwich"]
+############
 
 lang = 'en'
 
@@ -215,10 +229,10 @@ headers = [
     DB_COLUMN1, 
 ]
 
-for url in start_urls:
+for url in topElevenToTwenty:
 
     # get all reviews for 'url' and 'lang'
-    items = scrape(url, lang)
+    items = scrape(prefix + url + postfix, lang)
 
     # write in CSV
     filename = url.split('Reviews-')[1][:-5] + '__' + lang
