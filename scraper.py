@@ -57,7 +57,8 @@ def parse(session, url):
         print('[parse] no soup:', url)
         return
 
-    num_reviews = soup.find('span', class_='reviews_header_count').text # get text
+    #num_reviews = soup.find('span', class_='reviews_header_count').text # get text
+    num_reviews = soup.select(".prw_filters_detail_language > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > label:nth-child(2) > span:nth-child(1)")[0].text
     num_reviews = num_reviews[1:-1] 
     num_reviews = num_reviews.replace(',', '')
     num_reviews = int(num_reviews) # convert text into integer
@@ -72,6 +73,9 @@ def parse(session, url):
 
     #uncomment to scrap all reviews
     while(True):
+
+        if offset > num_reviews:
+            break
         subpage_url = url_template.format(offset)
 
         subpage_items = parse_reviews(session, subpage_url)
@@ -180,8 +184,8 @@ def parse_reviews(session, url):
 
         items.append(item)
         print('\n--- review ---\n')
-        for key,val in item.items():
-            print(' ', key, ':', val)
+        # for key,val in item.items():
+        #     print(' ', key, ':', val)
 
     print()
 
