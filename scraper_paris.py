@@ -116,7 +116,7 @@ def get_reviews_ids(soup):
 
     if items:
         reviews_ids = [x.attrs['data-reviewid'] for x in items][::2]
-        print('[get_reviews_ids] data-reviewid:', reviews_ids)
+        print('[get_reviews_ids] data-reviewid:')
         return reviews_ids
 
 
@@ -164,36 +164,44 @@ def parse_reviews(session, url):
 
     for idx, review in enumerate(soup.find_all('div', class_='reviewSelector')):
 
-        badgets = review.find_all('span', class_='badgetext')
-        if len(badgets) > 0:
-            contributions = badgets[0].text
-        else:
-            contributions = '0'
+        # badgets = review.find_all('span', class_='badgetext')
+        # if len(badgets) > 0:
+        #     contributions = badgets[0].text
+        # else:
+        #     contributions = '0'
 
-        if len(badgets) > 1:
-            helpful_vote = badgets[1].text
+        # if len(badgets) > 1:
+        #     helpful_vote = badgets[1].text
+        # else:
+        #     helpful_vote = '0'
+        # user_loc = review.select_one('div.userLoc strong')
+        # if user_loc:
+        #     user_loc = user_loc.text
+        # else:
+        #     user_loc = ''
+
+        user_name = review.select_one('div.info_text div')
+        if user_name:
+            user_name = user_name.text
         else:
-            helpful_vote = '0'
-        user_loc = review.select_one('div.userLoc strong')
-        if user_loc:
-            user_loc = user_loc.text
-        else:
-            user_loc = ''
+            user_name = ''
 
         bubble_rating = review.select_one('span.ui_bubble_rating')['class']
         bubble_rating = bubble_rating[1].split('_')[-1]
 
         item = {
+            'review_user_name': user_name,
+            'review_rating': bubble_rating,
             'review_body': review.find('p', class_='partial_entry').text,
-            'review_date': review.find('span', class_='ratingDate')['title'],  # 'ratingDate' instead of 'relativeDate'
+            'review_date': review.find('span', class_='ratingDate')['title']  # 'ratingDate' instead of 'relativeDate'
         }
 
         items.append(item)
-        print('\n--- review ---\n')
+        # print('\n--- review ---\n')
         # for key,val in item.items():
         #     print(' ', key, ':', val)
 
-    print()
+    # print()
 
     return items
 
@@ -216,11 +224,13 @@ def write_in_csv(items, filename='results.csv',
 
 DB_COLUMN = 'review_body'
 DB_COLUMN1 = 'review_date'
+DB_COLUMN2 = 'review_rating'
+DB_COLUMN3 = 'review_user_name'
 
 ##########modify this section to scrap from different city
 prefix = "https://www.tripadvisor.com/Attraction_Review-g187147-"
-postfix = "-Paris_Ile_de_France.html"
-topElevenToTwenty = ["d189687-Reviews-Luxembourg_Gardens",
+suffix = "-Paris_Ile_de_France.html"
+topElevenToThirty = ["d189687-Reviews-Luxembourg_Gardens",
                      "d190685-Reviews-Basilique_du_Sacre_Coeur_de_Montmartre",
                      "d292257-Reviews-Le_Marais",
                      "d188149-Reviews-Musee_Rodin",
@@ -229,21 +239,34 @@ topElevenToTwenty = ["d189687-Reviews-Luxembourg_Gardens",
                      "d191240-Reviews-Saint_Germain_des_Pres_Quarter",
                      "d188485-Reviews-Musee_Marmottan_Monet",
                      "d189245-Reviews-Musee_de_l_Armee_des_Invalides",
-                     "d194171-Reviews-Jardin_des_Tuileries"]
+                     "d194171-Reviews-Jardin_des_Tuileries",
+                     "d189685-Reviews-Latin_Quarter",
+                     "d314450-Reviews-Observatoire_Panoramique_de_la_Tour_Montparnasse",
+                     "d189193-Reviews-Galeries_Lafayette_Paris_Haussmann",
+                     "d265614-Reviews-Pont_Alexandre_III",
+                     "d189249-Reviews-Parc_des_Buttes_Chaumont",
+                     "d188761-Reviews-Musee_Jacquemart_Andre",
+                     "d13986330-Reviews-Atelier_des_Lumieres",
+                     "d188698-Reviews-Cemiterio_de_Pere_Lachaise",
+                     "d188467-Reviews-Place_des_Vosges",
+                     "d2397509-Reviews-Towers_of_Notre_Dame_Cathedral"
+                     ]
 ############
 
 lang = 'en'
 
 headers = [
+    DB_COLUMN3,
+    DB_COLUMN2,
     DB_COLUMN,
-    DB_COLUMN1,
+    DB_COLUMN1
 ]
 
-for url in topElevenToTwenty:
+for url in topElevenToThirty:
     # get all reviews for 'url' and 'lang'
-    items = scrape(prefix + url + postfix, lang)
+    items = scrape(prefix + url + suffix, lang)
 
     # write in CSV
-    filename = url.split('Reviews-')[1][:-5] + '__' + lang
+    filename = url.split('Reviews-')[1] + '__' + lang
     print('filename:', filename)
     write_in_csv(items, filename + '.csv', headers, mode='w')
