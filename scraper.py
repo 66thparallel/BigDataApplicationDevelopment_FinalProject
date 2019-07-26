@@ -71,26 +71,11 @@ def parse(session, url):
 
     offset = 0
 
-    #uncomment to scrap all reviews
-    while(True):
+    # uncomment to scrap all reviews
+    # while(True):
 
-        if offset > num_reviews:
-            break
-        subpage_url = url_template.format(offset)
-
-        subpage_items = parse_reviews(session, subpage_url)
-        if not subpage_items:
-            break
-
-        items += subpage_items
-
-        if len(subpage_items) < 5:
-            break
-
-        offset += 10
-
-    # scrape only 20 page
-    # for i in range(10):
+    #     if offset > num_reviews:
+    #         break
     #     subpage_url = url_template.format(offset)
 
     #     subpage_items = parse_reviews(session, subpage_url)
@@ -103,6 +88,21 @@ def parse(session, url):
     #         break
 
     #     offset += 10
+
+    # scrape only 10 page
+    for i in range(10):
+        subpage_url = url_template.format(offset)
+
+        subpage_items = parse_reviews(session, subpage_url)
+        if not subpage_items:
+            break
+
+        items += subpage_items
+
+        if len(subpage_items) < 5:
+            break
+
+        offset += 10
     return items
 
 def get_reviews_ids(soup):
@@ -184,9 +184,9 @@ def parse_reviews(session, url):
         bubble_rating = bubble_rating[1].split('_')[-1]
 
         item = {
-            'review_user_name': user_name,
-            'review_rating': bubble_rating,
-            'review_body': review.find('p', class_='partial_entry').text,
+            'review_user_name': user_name + "||",
+            'review_rating': bubble_rating + "||",
+            'review_body': review.find('p', class_='partial_entry').text + "||",
             'review_date': review.find('span', class_='ratingDate')['title'] # 'ratingDate' instead of 'relativeDate'
         }
 
@@ -233,7 +233,7 @@ topElevenToThirty = ["d188159-Reviews-St_Paul_s_Cathedral",
  "d187726-Reviews-Shakespeare_s_Globe_Theatre",
  "d7398968-Reviews-Sky_Garden",
  "d3539289-Reviews-The_View_from_The_Shard",
- "d187601-Reviews-Greenwich"
+ "d187601-Reviews-Greenwich",
  "d3263267-Reviews-Up_at_The_O2",
  "d187549-Reviews-Buckingham_Palace",
  "d187675-Reviews-Regent_s_Park",
@@ -264,4 +264,10 @@ for url in topElevenToThirty:
     # write in CSV
     filename = url.split('Reviews-')[1] + '__' + lang
     print('filename:', filename)
-    write_in_csv(items, filename + '.csv', headers, mode='w')
+    # write_in_csv(items, filename + '.csv', headers, mode='w')
+    with open(filename, 'w') as f:
+        for item in items:
+            temp = ""
+            for v in item.values():
+                temp += v
+            f.write("%s\n" % temp)
