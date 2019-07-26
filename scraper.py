@@ -103,7 +103,7 @@ def parse(session, url):
     #         break
 
     #     offset += 10
-    # return items
+    return items
 
 def get_reviews_ids(soup):
 
