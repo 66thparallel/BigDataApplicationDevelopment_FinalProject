@@ -228,28 +228,28 @@ DB_COLUMN2 = 'review_rating'
 DB_COLUMN3 = 'review_user_name'
 
 ##########modify this section to scrap from different city
-prefix = "https://www.tripadvisor.com/Attraction_Review-g187147-"
-suffix = "-Paris_Ile_de_France.html"
-topElevenToThirty = ["d189687-Reviews-Luxembourg_Gardens",
-                     "d190685-Reviews-Basilique_du_Sacre_Coeur_de_Montmartre",
-                     "d292257-Reviews-Le_Marais",
-                     "d188149-Reviews-Musee_Rodin",
-                     "d246750-Reviews-Trocadero",
-                     "d189280-Reviews-Pantheon",
-                     "d191240-Reviews-Saint_Germain_des_Pres_Quarter",
-                     "d188485-Reviews-Musee_Marmottan_Monet",
-                     "d189245-Reviews-Musee_de_l_Armee_des_Invalides",
-                     "d194171-Reviews-Jardin_des_Tuileries",
-                     "d189685-Reviews-Latin_Quarter",
-                     "d314450-Reviews-Observatoire_Panoramique_de_la_Tour_Montparnasse",
-                     "d189193-Reviews-Galeries_Lafayette_Paris_Haussmann",
-                     "d265614-Reviews-Pont_Alexandre_III",
-                     "d189249-Reviews-Parc_des_Buttes_Chaumont",
-                     "d188761-Reviews-Musee_Jacquemart_Andre",
-                     "d13986330-Reviews-Atelier_des_Lumieres",
-                     "d188698-Reviews-Cemiterio_de_Pere_Lachaise",
-                     "d188467-Reviews-Place_des_Vosges",
-                     "d2397509-Reviews-Towers_of_Notre_Dame_Cathedral"
+prefix = "https://www.tripadvisor.com/Attraction_Review-g60763-"
+suffix = "-New_York_City_New_York.html"
+topElevenToThirty = ["d143358-Reviews-Intrepid_Sea_Air_Space_Museum",
+                     "d103371-Reviews-Grand_Central_Terminal",
+                     "d136053-Reviews-St_Patrick_s_Cathedral",
+                     "d105123-Reviews-Rockefeller_Center",
+                     "d267031-Reviews-Manhattan_Skyline",
+                     "d110164-Reviews-Radio_City_Music_Hall",
+                     "d143361-Reviews-Broadway",
+                     "d106609-Reviews-The_Met_Cloisters",
+                     "d136347-Reviews-Bryant_Park",
+                     "d110145-Reviews-Times_Square",
+                     "d104370-Reviews-Ellis_Island",
+                     "d275371-Reviews-Madison_Square_Garden",
+                     "d143367-Reviews-Greenwich_Village",
+                     "d143363-Reviews-Staten_Island_Ferry",
+                     "d10340693-Reviews-The_Oculus",
+                     "d288031-Reviews-Chelsea_Market",
+                     "d210108-Reviews-American_Museum_of_Natural_History",
+                     "d12291624-Reviews-Gulliver_s_Gate",
+                     "d105126-Reviews-The_Museum_of_Modern_Art",
+                     "d10749293-Reviews-Christmas_Spectacular_Starring_the_Radio_City_Rockettes"
                      ]
 ############
 

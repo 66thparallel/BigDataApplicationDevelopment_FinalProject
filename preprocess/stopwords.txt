@@ -10,13 +10,11 @@ actually
 after
 afterwards
 again
-against
 aint
 all
 allow
 allows
 almost
-alone
 along
 already
 also
@@ -38,7 +36,6 @@ anyways
 anywhere
 apart
 appear
-appreciate
 appropriate
 are
 arent
@@ -51,7 +48,6 @@ associated
 at
 available
 away
-awfully
 b
 be
 became
@@ -68,8 +64,6 @@ believe
 below
 beside
 besides
-best
-better
 between
 beyond
 both
@@ -216,7 +210,6 @@ im
 ive
 ie
 if
-ignored
 immediate
 in
 inasmuch
@@ -259,7 +252,6 @@ lest
 let
 lets
 like
-liked
 likely
 little
 look
@@ -312,7 +304,6 @@ nor
 normally
 not
 nothing
-novel
 now
 nowhere
 o
@@ -389,9 +380,7 @@ seems
 seen
 self
 selves
-sensible
 sent
-serious
 seriously
 seven
 several
@@ -517,7 +506,6 @@ wed
 well
 were
 weve
-welcome
 well
 went
 were
@@ -573,3 +561,11 @@ yourself
 yourselves
 z
 zero
+“
+‘
+,
+!
+-
+?
+=
+.
