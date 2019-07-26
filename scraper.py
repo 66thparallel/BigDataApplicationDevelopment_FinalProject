@@ -72,25 +72,10 @@ def parse(session, url):
     offset = 0
 
     # uncomment to scrap all reviews
-    # while(True):
+    while(True):
 
-    #     if offset > num_reviews:
-    #         break
-    #     subpage_url = url_template.format(offset)
-
-    #     subpage_items = parse_reviews(session, subpage_url)
-    #     if not subpage_items:
-    #         break
-
-    #     items += subpage_items
-
-    #     if len(subpage_items) < 5:
-    #         break
-
-    #     offset += 10
-
-    # scrape only 10 page
-    for i in range(10):
+        if offset > num_reviews:
+            break
         subpage_url = url_template.format(offset)
 
         subpage_items = parse_reviews(session, subpage_url)
@@ -103,7 +88,22 @@ def parse(session, url):
             break
 
         offset += 10
-    return items
+
+    # scrape only 10 page
+    # for i in range(10):
+    #     subpage_url = url_template.format(offset)
+
+    #     subpage_items = parse_reviews(session, subpage_url)
+    #     if not subpage_items:
+    #         break
+
+    #     items += subpage_items
+
+    #     if len(subpage_items) < 5:
+    #         break
+
+    #     offset += 10
+    # return items
 
 def get_reviews_ids(soup):
 
