@@ -16,7 +16,7 @@ module load python3/intel/3.6.3
 
 cd /scratch/jl860/bdad/fp
 source env/bin/activate
-python scraper.py
+python scraper_nyc.py
 
 
 

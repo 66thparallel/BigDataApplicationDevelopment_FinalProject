@@ -561,11 +561,3 @@ yourself
 yourselves
 z
 zero
-“
-‘
-,
-!
--
-?
-=
-.

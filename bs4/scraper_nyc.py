@@ -1,3 +1,12 @@
+# coding: utf-8
+# !/usr/bin/python3
+"""
+Authors: Yu-Ting Chiu, Jane Liu
+Description: A web scraper based on the Beautiful Soup 4 library. Scrapes the TripAdvisor Tourist
+    Attractions pages for London, Paris, and NYC (London shown here). With thanks to Susan Li
+    (https://towardsdatascience.com/@actsusanli).
+"""
+
 import requests
 from bs4 import BeautifulSoup
 import csv
@@ -23,8 +32,7 @@ def get_soup(session, url, show=False):
 
 
 def post_soup(session, url, params, show=False):
-    '''Read HTML from server and convert to Soup'''
-
+    # read HTML from server and convert to Soup
     r = session.post(url, data=params)
 
     if show:
@@ -37,7 +45,7 @@ def post_soup(session, url, params, show=False):
 
 
 def scrape(url, lang='ALL'):
-    # create session to keep all cookies (etc.) between requests
+    # create session to keep all cookies, etc. between requests
     session = requests.Session()
 
     session.headers.update({
@@ -50,8 +58,7 @@ def scrape(url, lang='ALL'):
 
 
 def parse(session, url):
-    '''Get number of reviews and start getting subpages with reviews'''
-
+    # get number of reviews and start getting subpages with reviews
     print('[parse] url:', url)
 
     soup = get_soup(session, url)
@@ -76,8 +83,8 @@ def parse(session, url):
 
     offset = 0
 
-    # uncomment to scrap all reviews
-    while (True):
+    ''' Uncomment to scrape all reviews
+    while(True):
 
         if offset > num_reviews:
             break
@@ -93,21 +100,21 @@ def parse(session, url):
             break
 
         offset += 10
+    '''
 
-    # scrape only 20 page
-    # for i in range(10):
-    #     subpage_url = url_template.format(offset)
+    for i in range(10):
+        subpage_url = url_template.format(offset)
 
-    #     subpage_items = parse_reviews(session, subpage_url)
-    #     if not subpage_items:
-    #         break
+        subpage_items = parse_reviews(session, subpage_url)
+        if not subpage_items:
+            break
 
-    #     items += subpage_items
+        items += subpage_items
 
-    #     if len(subpage_items) < 5:
-    #         break
+        if len(subpage_items) < 5:
+            break
 
-    #     offset += 10
+        offset += 10
     return items
 
 
@@ -138,7 +145,7 @@ def get_more(session, reviews_ids):
 
 
 def parse_reviews(session, url):
-    '''Get all reviews from one page'''
+    # get all reviews from one page
 
     print('[parse_reviews] url:', url)
 
@@ -190,9 +197,9 @@ def parse_reviews(session, url):
         bubble_rating = bubble_rating[1].split('_')[-1]
 
         item = {
-            'review_user_name': user_name,
-            'review_rating': bubble_rating,
-            'review_body': review.find('p', class_='partial_entry').text,
+            'review_user_name': user_name + "||",
+            'review_rating': bubble_rating + "||",
+            'review_body': review.find('p', class_='partial_entry').text + "||",
             'review_date': review.find('span', class_='ratingDate')['title']  # 'ratingDate' instead of 'relativeDate'
         }
 
@@ -227,7 +234,7 @@ DB_COLUMN1 = 'review_date'
 DB_COLUMN2 = 'review_rating'
 DB_COLUMN3 = 'review_user_name'
 
-##########modify this section to scrap from different city
+##### Modify this section to scrape from a different city
 prefix = "https://www.tripadvisor.com/Attraction_Review-g60763-"
 suffix = "-New_York_City_New_York.html"
 topElevenToThirty = ["d143358-Reviews-Intrepid_Sea_Air_Space_Museum",
@@ -251,7 +258,7 @@ topElevenToThirty = ["d143358-Reviews-Intrepid_Sea_Air_Space_Museum",
                      "d105126-Reviews-The_Museum_of_Modern_Art",
                      "d10749293-Reviews-Christmas_Spectacular_Starring_the_Radio_City_Rockettes"
                      ]
-############
+#####
 
 lang = 'en'
 
@@ -263,10 +270,17 @@ headers = [
 ]
 
 for url in topElevenToThirty:
+
     # get all reviews for 'url' and 'lang'
     items = scrape(prefix + url + suffix, lang)
 
     # write in CSV
     filename = url.split('Reviews-')[1] + '__' + lang
     print('filename:', filename)
-    write_in_csv(items, filename + '.csv', headers, mode='w')
+    # write_in_csv(items, filename + '.csv', headers, mode='w')
+    with open(filename, 'w') as f:
+        for item in items:
+            temp = ""
+            for v in item.values():
+                temp += v
+            f.write("%s\n" % temp)
