@@ -10,7 +10,7 @@ Classes:
     Unigrams:
         Returns the top 100 unigrams and prints to the console and ngrams.txt.
     Preprocessor:
-        Calls Tokenizer, RemoveStopWords, and lemmatizes the text. Finds the top 100 unigrams and bigrams.
+        Calls Tokenizer, RemoveStopWords, and lemmatizes the text. Finds the top 100 unigrams.
 """
 
 import re
@@ -41,7 +41,7 @@ class RemoveStopWords:
         self._stopwords = []
 
     def removestopwords(self):
-        with open('data/stopwords.txt', 'r') as g:
+        with open('/scratch/jl860/bdad/fp/preprocess/stopwords.txt', 'r') as g:
             self._stopwords = g.read().splitlines()
         for word in self._stopwords:
             self._text = [value for value in self._text if value.lower() != word]
@@ -79,33 +79,31 @@ class Preprocessor:
         self._bigrams = []
         self._ngrams = []
 
-    def preprocess(self):
+    def preprocess(self, rdd):
+        self._reviews = rdd.read().split()
 
-        with open('data/reviewContent.txt', 'r') as f:
-            self._reviews = f.read().split()
+        # Tokenize the text file
+        self._temptext = Tokenizer(self._reviews)
+        self._cleantext = self._temptext.tokenize()
 
-            # Tokenize the text file
-            self._temptext = Tokenizer(self._reviews)
-            self._cleantext = self._temptext.tokenize()
+        # Remove stop words
+        self._temptext = RemoveStopWords(self._cleantext)
+        self._cleantext = self._temptext.removestopwords()
 
-            # Remove stop words
-            self._temptext = RemoveStopWords(self._cleantext)
-            self._cleantext = self._temptext.removestopwords()
+        # Lemmatize the text
+        lemma_text = []
+        lemmatizer = WordNetLemmatizer()
 
-            # Lemmatize the text
-            lemma_text = []
-            lemmatizer = WordNetLemmatizer()
+        for word in list(self._cleantext):
+            new_word = lemmatizer.lemmatize(word)
+            lemma_text.append(new_word)
 
-            for word in list(self._cleantext):
-                new_word = lemmatizer.lemmatize(word)
-                lemma_text.append(new_word)
+        for word in lemma_text:
+            self._preprocessedlist.append(word)
 
-            for word in lemma_text:
-                self._preprocessedlist.append(word)
+        unitemp = Unigrams(self._preprocessedlist)
+        self._unigrams = unitemp.get_top_unigrams()
 
-            unitemp = Unigrams(self._preprocessedlist)
-            self._unigrams = unitemp.get_top_unigrams()
-
-            [self._ngrams.append(x) for x in self._unigrams]
+        [self._ngrams.append(x) for x in self._unigrams]
 
         return self._ngrams
