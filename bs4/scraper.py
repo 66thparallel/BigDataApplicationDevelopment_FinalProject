@@ -1,4 +1,12 @@
-import requests             
+# coding: utf-8
+# !/usr/bin/python3
+"""
+Author: Yu-Ting Chiu, Jane Liu
+Description: A web scraper utilizing the Beautiful Soup library. The scraper was used to retrieve user review
+    data from the TripAdvisor Attractions page for London, Paris, and NYC.
+"""
+
+import requests
 from bs4 import BeautifulSoup 
 import csv                  
 import webbrowser
