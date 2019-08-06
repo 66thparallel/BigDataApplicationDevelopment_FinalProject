@@ -57,7 +57,7 @@ paris_stopwordsDF = remover.transform(paris_tokenizedDF)
 paris_finalDF = paris_stopwordsDF
 
 # Split data into training, validation, and test sets
-(train_set, val_set, test_set) = paris_finalDF.randomSplit([0.9, 0.1, 0.1], seed = 2000)
+(train_set, val_set, test_set) = paris_finalDF.randomSplit([0.8, 0.1, 0.1], seed = 2000)
 
 # Set up tf-idf
 hashtf = HashingTF(numFeatures=2**12, inputCol="stpwd_review", outputCol='tf_review')

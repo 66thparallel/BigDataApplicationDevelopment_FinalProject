@@ -53,7 +53,7 @@ nyc_stopwordsDF = remover.transform(nyc_tokenizedDF)
 nyc_finalDF = nyc_stopwordsDF
 
 # Split data into training, validation, and test sets
-(train_set, val_set, test_set) = nyc_finalDF.randomSplit([0.98, 0.01, 0.01], seed = 2000)
+(train_set, val_set, test_set) = nyc_finalDF.randomSplit([0.8, 0.1, 0.1], seed = 2000)
 
 # Set up tf-idf
 hashtf = HashingTF(numFeatures=2**12, inputCol="stpwd_review", outputCol='tf_review')

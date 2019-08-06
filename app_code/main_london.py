@@ -54,7 +54,7 @@ london_finalDF = london_stopwordsDF
 
 
 # Split data into training, validation, and test sets
-(train_set, val_set, test_set) = london_finalDF.randomSplit([0.98, 0.01, 0.01], seed = 2000)
+(train_set, val_set, test_set) = london_finalDF.randomSplit([0.8, 0.1, 0.1], seed = 2000)
 
 
 # Set up tf-idf
