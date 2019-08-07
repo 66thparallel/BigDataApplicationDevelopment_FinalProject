@@ -9,8 +9,9 @@ Description: This application uses sentiment analysis to create a ranked list of
     tourist attractions to visit based on their sentiment score.
 """
 
-from pyspark.sql import SQLContext, Row
+from pyspark import SparkContext, SparkConf
 from pyspark import sql
+from pyspark.sql import SQLContext, Row
 from pyspark.sql.functions import when, udf, col
 from pyspark.ml import Pipeline
 from pyspark.ml.feature import *
@@ -18,14 +19,19 @@ from pyspark.ml.classification import LogisticRegression
 from pyspark.ml.evaluation import BinaryClassificationEvaluator
 import string
 
+# Define Spark Context
+conf = SparkConf().setAppName("finalProjectApp").setMaster("local")
+sc = SparkContext(conf=conf)
+sqlContext = sql.SQLContext(sc)
+
 # ETL
 
 # Load the dataset
 
-citiesRDD = sc.textFile("bdad/fp/dataset/paris/Atelier_des_Lumieres.txt,bdad/fp/dataset/paris/Basilique_du_Sacre_Coeur_de_Montmartre.txt,bdad/fp/dataset/paris/Cemiterio_de_Pere_Lachaise.txt,bdad/fp/dataset/paris/Galeries_Lafayette_Paris_Haussmann.txt,bdad/fp/dataset/paris/Galeries_Lafayette_Paris_Haussmann.txt,bdad/fp/dataset/paris/Jardin_des_Tuileries.txt,bdad/fp/dataset/paris/Latin_Quarter.txt,bdad/fp/dataset/paris/Le_Marais.txt,bdad/fp/dataset/paris/Luxembourg_Gardens.txt,bdad/fp/dataset/paris/Musee_Jacquemart_Andre.txt,bdad/fp/dataset/london/Buckingham_Palace.txt,bdad/fp/dataset/london/Camden_Market.txt,bdad/fp/dataset/london/Chelsea_FC_Stadium_Tour_Museum.txt,bdad/fp/dataset/london/Covent_Garden.txt,bdad/fp/dataset/london/Emirates_Stadium_Tour_and_Museum.txt,bdad/fp/dataset/london/Greenwich.txt,bdad/fp/dataset/london/HMS_Belfast.txt,bdad/fp/dataset/london/Highgate_Cemetery.txt,bdad/fp/dataset/london/Houses_of_Parliament.txt,bdad/fp/dataset/london/Imperial_War_Museums.txt,bdad/fp/dataset/nyc/American_Museum_of_Natural_History.txt,bdad/fp/dataset/nyc/Broadway.txt,bdad/fp/dataset/nyc/Bryant_Park.txt,bdad/fp/dataset/nyc/Chelsea_Market.txt,bdad/fp/dataset/nyc/Christmas_Spectacular_Starring_the_Radio_City_Rockettes.txt,bdad/fp/dataset/nyc/Ellis_Island.txt,bdad/fp/dataset/nyc/Grand_Central_Terminal.txt,bdad/fp/dataset/nyc/Greenwich_Village.txt,bdad/fp/dataset/nyc/Gulliver_s_Gate.txt,bdad/fp/dataset/nyc/Intrepid_Sea_Air_Space_Museum.txt")
+trainRDD = sc.textFile("bdad/fp/dataset/paris/Atelier_des_Lumieres.txt,bdad/fp/dataset/paris/Basilique_du_Sacre_Coeur_de_Montmartre.txt,bdad/fp/dataset/paris/Cemiterio_de_Pere_Lachaise.txt,bdad/fp/dataset/paris/Galeries_Lafayette_Paris_Haussmann.txt,bdad/fp/dataset/paris/Galeries_Lafayette_Paris_Haussmann.txt,bdad/fp/dataset/paris/Jardin_des_Tuileries.txt,bdad/fp/dataset/paris/Latin_Quarter.txt,bdad/fp/dataset/paris/Le_Marais.txt,bdad/fp/dataset/paris/Luxembourg_Gardens.txt,bdad/fp/dataset/paris/Musee_Jacquemart_Andre.txt,bdad/fp/dataset/london/Buckingham_Palace.txt,bdad/fp/dataset/london/Camden_Market.txt,bdad/fp/dataset/london/Chelsea_FC_Stadium_Tour_Museum.txt,bdad/fp/dataset/london/Covent_Garden.txt,bdad/fp/dataset/london/Emirates_Stadium_Tour_and_Museum.txt,bdad/fp/dataset/london/Greenwich.txt,bdad/fp/dataset/london/HMS_Belfast.txt,bdad/fp/dataset/london/Highgate_Cemetery.txt,bdad/fp/dataset/london/Houses_of_Parliament.txt,bdad/fp/dataset/london/Imperial_War_Museums.txt,bdad/fp/dataset/nyc/American_Museum_of_Natural_History.txt,bdad/fp/dataset/nyc/Broadway.txt,bdad/fp/dataset/nyc/Bryant_Park.txt,bdad/fp/dataset/nyc/Chelsea_Market.txt,bdad/fp/dataset/nyc/Christmas_Spectacular_Starring_the_Radio_City_Rockettes.txt,bdad/fp/dataset/nyc/Ellis_Island.txt,bdad/fp/dataset/nyc/Grand_Central_Terminal.txt,bdad/fp/dataset/nyc/Greenwich_Village.txt,bdad/fp/dataset/nyc/Gulliver_s_Gate.txt,bdad/fp/dataset/nyc/Intrepid_Sea_Air_Space_Museum.txt")
 
 # Split the corpus using double pipes as delimiter
-splitRDD = citiesRDD.map(lambda x: x.split("||"))
+splitRDD = trainRDD.map(lambda x: x.split("||"))
 
 # Clean and preprocess
 
@@ -34,11 +40,11 @@ temp1DF = splitRDD.toDF(["username","rating","review","date"])
 temp2DF = temp1DF.drop("username").drop("date")
 
 ## use only reviews with rating of 10 or 50 for binary classification
-citiesDF = temp2DF.filter((temp2DF.rating != '20') & (temp2DF.rating != '30') & (temp2DF.rating != '40'))
-citiesDF.show(10)
+trainDF = temp2DF.filter((temp2DF.rating != '20') & (temp2DF.rating != '30') & (temp2DF.rating != '40'))
+#trainDF.show(10)
 
 # NLP processing: tokenize, remove stopwords
-tokenized = Tokenizer(inputCol="review", outputCol="tok_review").transform(citiesDF)
+tokenized = Tokenizer(inputCol="review", outputCol="tok_review").transform(trainDF)
 tokenizedDF = tokenized.drop("review")
 remover = StopWordsRemover(inputCol="tok_review", outputCol="stpwd_review")
 stopwordsDF = remover.transform(tokenizedDF)
@@ -55,7 +61,7 @@ pipeline = Pipeline(stages=[tf, idf, label_stringIdx])
 pipelineFit = pipeline.fit(train_set)
 train_df = pipelineFit.transform(train_set)
 val_df = pipelineFit.transform(val_set)
-train_df.show(30)
+#train_df.show(30)
 
 # Train the classifier (label value 0.0 = positive, 1.0 = negative)
 lr = LogisticRegression(maxIter=100, labelCol="label", featuresCol="features")
@@ -65,7 +71,7 @@ predictions = lrModel.transform(val_df)
 # Evaluate the accuracy and show prediction columns
 evaluator = BinaryClassificationEvaluator(rawPredictionCol="rawPrediction")
 print "Accuracy is", int(evaluator.evaluate(predictions)*100), "percent."
-predictions.select(predictions.columns[6:]).show(20)
+#predictions.select(predictions.columns[6:]).show(20)
 
 # Apply the trained model to each tourist attraction to get its sentiment score
 def getScore(rdd):
@@ -168,7 +174,11 @@ sorted_nyc = sorted(nyc_list, key=lambda x: x[1])
 
 # Print the ranked list of tourist attractions for all cities
 def printCity(list, name):
-    filename = name + ".txt"
+
+    # Set the file path for the output text files
+    filepath = "/home/jl860/bdad/fp/website/output/"
+
+    filename = filepath + name + ".txt"
     with open(filename, 'w') as fp:
         fp.write('\n'.join('{}'.format(x[1]) for x in list))
 
