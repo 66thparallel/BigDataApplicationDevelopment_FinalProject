@@ -66,7 +66,8 @@ def parse(session, url):
         return
 
     #num_reviews = soup.find('span', class_='reviews_header_count').text # get text
-    num_reviews = soup.select(".prw_filters_detail_language > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > label:nth-child(2) > span:nth-child(1)")[0].text
+    num_reviews = soup.select(".prw_rup.prw_filters_detail_language.ui_column.separated.is-3 > div > div.content > div.choices.is-shown-at-tablet > div:nth-child(2) > label > span.count ")[0].text
+    #taplc_detail_filters_ar_responsive_0 > div > div.collapsible.is-shown-at-tablet > div > div.ui_columns.filters > div
     num_reviews = num_reviews[1:-1] 
     num_reviews = num_reviews.replace(',', '')
     num_reviews = int(num_reviews) # convert text into integer
