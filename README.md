@@ -31,17 +31,16 @@ screenshots/[screenshots of the running application]
 
 
 REQUIREMENTS
-Please copy all files and folders into the working directory (shown above). The following libraries are use: MLlib,
-Spark SQL, string module.
+Please copy all files and folders into the working directory (shown above). The following libraries are used: MLlib,
+Spark SQL, string library.
 
 
 INSTRUCTIONS
 
 1. A batch file scrape.s has been included to run the web scrapers on the Prince cluster. We used only one
-scraper.py file and updated the URLs to point to different tourist attractions.
+scraper.py file and updated the URLs to point to different tourist attractions for different cities.
 
-2. It is recommended to run the profiling code (profile.py) in the REPL, due to the verbose feedback from Dubmo
-server when running a PySpark script.
+2. It is recommended to run the profiling code (profile.py) line by line in the REPL due to the verbose feedback from Spark  when running a script.
 
 3. Please update the file path in main.py. It is this line in the user-defined function printCity() at the bottom of
 the file.
@@ -58,3 +57,4 @@ cd /opt/cloudera/parcels/SPARK2/bin/
 EXPECTED RESULTS
 The binary logistic regression model is expected to have approximately 50% accuracy.
 We plan to train a multiple logistic regression model and will submit it in a separate file.
+
