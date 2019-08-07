@@ -184,7 +184,6 @@ printCity(sorted_nyc, "nyc")
 
 # Spark doesn’t support accuracy as a metric for binary classification, so we calculated the accuracy by counting
 # the number of predictions matching the label and dividing it by the total entries.
-
 evaluator = BinaryClassificationEvaluator(rawPredictionCol="rawPrediction")
-model_predict.select(model_predict.columns[:]).show(20)
 print("Accuracy is", int(evaluator.evaluate(model_predict)*100), "percent.")
+model_predict.select(model_predict.columns[:]).show(20)

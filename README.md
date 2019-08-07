@@ -12,10 +12,7 @@ Description: This application uses sentiment analysis to create a ranked list of
 FILES
 app_code/main.py
 data_ingest/scrape.s
-data_ingest/scraper_london.py
-data_ingest/scraper_paris.py
-data_ingest/scraper_nyc.py
-data_ingest/scraper_train.py
+data_ingest/scraper.py
 etl_code/etl.txt
 profiling_code/profile.py
 website/attrac/static/london.jpg
@@ -40,8 +37,8 @@ Spark SQL, string module.
 
 INSTRUCTIONS
 
-1. A batch file scrape.s has been included to run the web scrapers on the Prince cluster. The file paths and names
-of the web scraper file should be updated.
+1. A batch file scrape.s has been included to run the web scrapers on the Prince cluster. We used only one
+scraper.py file and updated the URLs to point to different tourist attractions.
 
 2. It is recommended to run the profiling code (profile.py) in the REPL, due to the verbose feedback from Dubmo
 server when running a PySpark script.
@@ -59,5 +56,5 @@ cd /opt/cloudera/parcels/SPARK2/bin/
 
 
 EXPECTED RESULTS
-The binary logistic regression model is expected to have 80% accuracy.
+The binary logistic regression model is expected to have approximately 50% accuracy.
 We plan to train a multiple logistic regression model and will submit it in a separate file.
