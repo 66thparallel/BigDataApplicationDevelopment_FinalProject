@@ -1,0 +1,21 @@
+DROP TABLE IF EXISTS city;
+DROP TABLE IF EXISTS attraction;
+
+CREATE TABLE city (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  title TEXT NOT NULL,
+  about TEXT NOT NULL,
+  serialNum TEXT NOT NULL
+);
+
+CREATE TABLE attraction (
+  ranking INTEGER NOT NULL,
+  city INTEGER NOT NULL,
+  title TEXT NOT NULL,
+  about TEXT NOT NULL,
+  serialNum TEXT NOT NULL,
+  rating FLOAT NOT NULL,
+  result FLOAT NOT NULL,
+  FOREIGN KEY (city) REFERENCES city (id)
+);
+

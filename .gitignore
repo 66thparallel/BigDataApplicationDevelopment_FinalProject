@@ -1,0 +1,14 @@
+attrac/venv/
+
+attrac/*.pyc
+attrac/__pycache__/
+
+attrac/instance/
+
+attrac/.pytest_cache/
+attrac/.coverage
+attrac/htmlcov/
+
+attrac/dist/
+attrac/build/
+attrac/*.egg-info/
