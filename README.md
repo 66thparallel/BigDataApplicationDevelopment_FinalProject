@@ -40,18 +40,22 @@ INSTRUCTIONS
 1. A batch file scrape.s has been included to run the web scrapers on the Prince cluster. We used only one
 scraper.py file and updated the URLs to point to different tourist attractions for different cities.
 
-2. It is recommended to run the profiling code (profile.py) line by line in the REPL due to the verbose feedback from Spark  when running a script.
+2. It is recommended to run the profiling code (profile.py) line by line in the REPL due to the verbose feedback from
+Spark  when running a script.
 
-3. Please update the file path in main.py. It is this line in the user-defined function printCity() at the bottom of
-the file.
+3. Please update your file path in main.py. It is located in the user-defined function printCity() at the bottom
+of main.py.
 
     # Set the file path for the output files
     filepath = "/home/jl860/bdad/fp/website/output/"
 
-4. To run the executable files: (please modify the file paths below)
+4. To run the executable files: (please modify file paths)
 
 cd /opt/cloudera/parcels/SPARK2/bin/
 ./spark2-submit --master local /home/jl860/bdad/fp/app_code/main.py
+
+5. The output text files (containing a ranked list of tourist attractions) is output to the file path that
+is specified in #3 above. Currently it's set to output to /home/jl860/bdad/fp/website/output/
 
 
 EXPECTED RESULTS
