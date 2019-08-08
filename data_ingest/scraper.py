@@ -271,13 +271,13 @@ headers = [
     DB_COLUMN1
 ]
 
-for url in topElevenToThirty:
+for url in topOneToTen:
 
     # get all reviews for 'url' and 'lang'
     items = scrape(prefix + url + suffix, lang)
 
     # write in CSV
-    filename = url.split('Reviews-')[1] + '__' + lang
+    filename = url.split('Reviews-')[1] + '__' + "1-10"
     print('filename:', filename)
     # write_in_csv(items, filename + '.csv', headers, mode='w')
     with open(filename, 'w') as f:
