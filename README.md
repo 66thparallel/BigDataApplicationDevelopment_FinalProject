@@ -40,6 +40,8 @@ INSTRUCTIONS
 1. A batch file scrape.s has been included to run the web scrapers on the Prince cluster. We used only one
 scraper.py file and updated the URLs to point to different tourist attractions for different cities.
 
+All input data is located in HDFS in bdad/fp/dataset.
+
 2. It is recommended to run the profiling code (profile.py) line by line in the REPL due to the verbose feedback from
 Spark  when running a script.
 
