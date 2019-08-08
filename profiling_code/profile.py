@@ -2,18 +2,20 @@
 # !/usr/bin/python2
 """
 Authors: Yu-Ting Chiu, Jane Liu
-Description: Profile the dataset.
+Description: Profile the dataset. Due to the output feedback from Dumbo, it's best to run these commands in REPL.
 """
 
+from pyspark import SparkContext, SparkConf
+from pyspark import sql
 from pyspark.sql import SQLContext, Row
 from pyspark.sql.functions import when, udf, col
-from pyspark.ml import Pipeline
-from pyspark.ml.feature import *
-from pyspark.ml.classification import LogisticRegression
-from pyspark.ml.evaluation import BinaryClassificationEvaluator
-from pyspark.sql.functions import size
 import string
 
+
+# Define Spark Context
+conf = SparkConf().setAppName("finalProjectApp").setMaster("local")
+sc = SparkContext(conf=conf)
+sqlContext = sql.SQLContext(sc)
 
 # Profile the dataset
 
@@ -60,3 +62,4 @@ citiesDF = extractDF.filter((extractDF.rating != '20') & (extractDF.rating != '3
 
 ## check that only reviews with a rating of 10 or 50 are in the dataframe
 citiesDF.show(30)
+print("Check that only reviews with a rating of 10 or 50 are in the dataframe.\n\n")
