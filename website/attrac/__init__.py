@@ -1,3 +1,8 @@
+"""
+Authors: Yu-Ting Chiu, Jane Liu
+Description: main program of the websit
+"""
+
 import os
 from .city import City
 from flask import Flask, render_template
