@@ -1,5 +1,5 @@
 import os
-
+from .city import City
 from flask import Flask, render_template
 
 
@@ -29,9 +29,20 @@ def create_app(test_config=None):
     def hello():
         return 'Hello, World!'
 
+    @app.route('/<city>')
+    def attraction_city(city):
+        filePath = "attrac/static/output/"
+        n = len(city)
+        if n==3:
+            city = "nyc"
+        filePath = filePath + city + ".txt"
+        city = City(filePath)
+        return render_template('attraction.html', city = city, url = "https://www.tripadvisor.com/Attraction_Review")
+
     @app.route('/')
     def index():
         return render_template('index.html')
+    
 
     from . import db
     db.init_app(app)

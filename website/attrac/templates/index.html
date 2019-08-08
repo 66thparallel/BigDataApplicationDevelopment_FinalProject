@@ -20,21 +20,21 @@
 <div align="center" style="margin-top:100px;margin-bottom:100px;"><h4>Where do yo want to go?</h4></div>
 <div class="row center">
     <div class="col-lg-4" align="center">
-        <a href="">
-            <img src="../static/newyork.jpg" style="width:300px;height:300px;" class="rounded" title="@Html.DisplayFor(modelItem => item.Description)" />
+        <a href="{{'/london'}}">
+            <img src="../static/london.jpg" style="width:300px;height:300px;" class="rounded" title="@Html.DisplayFor(modelItem => item.Description)" />
+            <div class="imgTitle" style="width:300px;"x>London</div>
+        </a>
+    </div>
+    <div class="col-lg-4" align="center">
+        <a href="{{'/nyc'}}">
+            <img src="../static/nyc.jpg" style="width:300px;height:300px;" class="rounded" title="@Html.DisplayFor(modelItem => item.Description)" />
             <div class="imgTitle" style="width:300px;">New York</div>
         </a>
     </div>
     <div class="col-lg-4" align="center">
-        <a href="../static/paris.jpg">
+        <a href="{{'/paris'}}">
             <img src="../static/paris.jpg" style="width:300px;height:300px;" class="rounded" title="@Html.DisplayFor(modelItem => item.Description)" />
             <div class="imgTitle" style="width:300px;">Paris</div>
-        </a>
-    </div>
-    <div class="col-lg-4" align="center">
-        <a href="@item.Action">
-            <img src="../static/london.jpg" style="width:300px;height:300px;" class="rounded" title="@Html.DisplayFor(modelItem => item.Description)" />
-            <div class="imgTitle" style="width:300px;"x>London</div>
         </a>
     </div>
 </div>

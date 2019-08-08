@@ -229,6 +229,15 @@ DB_COLUMN1 = 'review_date'
 DB_COLUMN2 = 'review_rating'
 DB_COLUMN3 = 'review_user_name'
 
+topOneToTen = [
+    "d188862-Reviews-National_Gallery",
+    "d187552-Reviews-Tower_Bridge",
+    "d189032-Reviews-Westminster_Abbey",
+    "d187556-Reviews-V_A_Victoria_and_Albert_Museum",
+    "d260500-Reviews-Borough_Market",
+    "d187676-Reviews-Natural_History_Museum",
+    "d189030-Reviews-Hyde_Park",
+]
 
 ##########modify this section to scrap from different city
 prefix = "https://www.tripadvisor.com/Attraction_Review-g186338-"
@@ -265,13 +274,13 @@ headers = [
     DB_COLUMN1
 ]
 
-for url in topElevenToThirty:
+for url in topOneToTen:
 
     # get all reviews for 'url' and 'lang'
     items = scrape(prefix + url + suffix, lang)
 
     # write in CSV
-    filename = url.split('Reviews-')[1] + '__' + lang
+    filename = url.split('Reviews-')[1] + '__' + "1-10"
     print('filename:', filename)
     # write_in_csv(items, filename + '.csv', headers, mode='w')
     with open(filename, 'w') as f:

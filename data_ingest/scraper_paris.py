@@ -69,7 +69,7 @@ def parse(session, url):
 
     # num_reviews = soup.find('span', class_='reviews_header_count').text # get text
     num_reviews = soup.select(
-        ".prw_filters_detail_language > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div:nth-child(2) > label:nth-child(2) > span:nth-child(1)")[
+        ".prw_rup.prw_filters_detail_language.ui_column.separated.is-3 > div > div.content > div.choices.is-shown-at-tablet > div:nth-child(2) > label > span.count")[
         0].text
     num_reviews = num_reviews[1:-1]
     num_reviews = num_reviews.replace(',', '')
@@ -83,7 +83,7 @@ def parse(session, url):
 
     offset = 0
 
-    ''' Uncomment to scrape all reviews
+    # Uncomment to scrape all reviews
     while(True):
 
         if offset > num_reviews:
@@ -100,21 +100,21 @@ def parse(session, url):
             break
 
         offset += 10
-    '''
+    
 
-    for i in range(10):
-        subpage_url = url_template.format(offset)
+    # for i in range(10):
+    #     subpage_url = url_template.format(offset)
 
-        subpage_items = parse_reviews(session, subpage_url)
-        if not subpage_items:
-            break
+    #     subpage_items = parse_reviews(session, subpage_url)
+    #     if not subpage_items:
+    #         break
 
-        items += subpage_items
+    #     items += subpage_items
 
-        if len(subpage_items) < 5:
-            break
+    #     if len(subpage_items) < 5:
+    #         break
 
-        offset += 10
+    #     offset += 10
     return items
 
 
@@ -258,6 +258,18 @@ topElevenToThirty = ["d189687-Reviews-Luxembourg_Gardens",
                      "d188467-Reviews-Place_des_Vosges",
                      "d2397509-Reviews-Towers_of_Notre_Dame_Cathedral"
                      ]
+topOneToTen = [
+    # "d188150-Reviews-Musee_d_Orsay",
+    # "d188679-Reviews-Cathedrale_Notre_Dame_de_Paris",
+    "d188757-Reviews-Louvre_Museum",
+    "d190202-Reviews-Sainte_Chapelle",
+    "d188151-Reviews-Eiffel_Tower",
+    "d190204-Reviews-Palais_Garnier_Opera_National_de_Paris",
+    "d189683-Reviews-Seine_River",
+    "d188709-Reviews-Arc_de_Triomphe",
+    "d265635-Reviews-Musee_de_l_Orangerie",
+    "d189687-Reviews-Luxembourg_Gardens",
+]
 #####
 
 lang = 'en'
@@ -269,7 +281,7 @@ headers = [
     DB_COLUMN1
 ]
 
-for url in topElevenToThirty:
+for url in topOneToTen:
 
     # get all reviews for 'url' and 'lang'
     items = scrape(prefix + url + suffix, lang)
@@ -278,7 +290,7 @@ for url in topElevenToThirty:
     filename = url.split('Reviews-')[1] + '__' + lang
     print('filename:', filename)
     # write_in_csv(items, filename + '.csv', headers, mode='w')
-    with open(filename, 'w') as f:
+    with open("paris/" + filename, 'w') as f:
         for item in items:
             temp = ""
             for v in item.values():
