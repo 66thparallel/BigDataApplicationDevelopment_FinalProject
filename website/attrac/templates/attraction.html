@@ -16,11 +16,11 @@
         </div>
         <div class="col-md-5">
         {% for attraction in city.attractions %}
-            <div class="container" style="border-style:solid;border-radius: 5px;border-width:1px;padding:15px;margin-bottom:5px">
+            <div class="container" style="border-style:solid;border-radius: 5px;border-width:1px;padding:15px;margin-bottom:5px;background-color: white;">
                 {# <img src="https://via.placeholder.com" style="width 10px; height 10px;"> #}
                 <h4><a href="https://www.tripadvisor.com/Attraction_Review-{{city.serialNum}}-{{attraction.serialNum}}" style="color: black">#{{attraction.ranking}}. {{attraction.title}}</a></h4>
                 <li>{{attraction.about}}</li>
-                <h3>{{attraction.rating}}|{{attraction.result}}</h3>
+                <h3>{{attraction.result}}|{{attraction.rating}}</h3>
             </div>
         {% endfor %}
         </div>
