@@ -12,19 +12,19 @@ hdfs dfs -ls bdad/fp
 
 ## create folders for the datasets
 hdfs dfs -mkdir bdad/fp/dataset
-hdfs dfs -mkdir bdad/fp/dataset/training_set
+hdfs dfs -mkdir bdad/fp/dataset/train
 hdfs dfs -mkdir bdad/fp/dataset/london
 hdfs dfs -mkdir bdad/fp/dataset/paris
 hdfs dfs -mkdir bdad/fp/dataset/nyc
 
 ## put the dataset in HDFS
-hdfs dfs -put *.txt bdad/fp/dataset/training_set
+hdfs dfs -put *.txt bdad/fp/dataset/train
 hdfs dfs -put *.txt bdad/fp/dataset/london
 hdfs dfs -put *.txt bdad/fp/dataset/paris
 hdfs dfs -put *.txt bdad/fp/dataset/nyc
 
 ## check files are in HDFS
-hdfs dfs -cat bdad/fp/dataset/training_set/Central_Park.txt
+hdfs dfs -cat bdad/fp/dataset/train/Central_Park.txt
 hdfs dfs -cat bdad/fp/dataset/london/Buckingham_Palace.txt
 hdfs dfs -cat bdad/fp/dataset/paris/Atelier_des_Lumieres.txt
 hdfs dfs -cat bdad/fp/dataset/nyc/The_Museum_of_Modern_Art.txt
