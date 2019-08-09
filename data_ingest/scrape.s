@@ -1,11 +1,11 @@
 #!/bin/bash
 #
 ##SBATCH --nodes=1
-#SBATCH --nodes=2
+#SBATCH --nodes=1
 #SBATCH --ntasks-per-node=1
-#SBATCH --cpus-per-task=2
+#SBATCH --cpus-per-task=1
 #SBATCH --time=6:00:00
-#SBATCH --mem=100GB
+#SBATCH --mem=10GB
 #SBATCH --job-name=BDAD_Project
 #SBATCH --mail-type=END
 ##SBATCH --mail-user=jl860@nyu.edu
