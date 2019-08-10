@@ -186,7 +186,7 @@ class NYC:
 # Run the trained model on tourist attractions for each city
 NYC = NYC()
 nyc_list = NYC.getList()
-sorted_nyc = sorted(nyc_list, key=lambda x: x[1])
+sorted_nyc = sorted(nyc_list, key=lambda x: x[0], reverse=True)
 
 
 # Print the ranked list of tourist attractions for all cities

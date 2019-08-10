@@ -185,7 +185,7 @@ class Paris:
 # Run the trained model on tourist attractions for each city
 Paris = Paris()
 paris_list = Paris.getList()
-sorted_paris = sorted(paris_list, key=lambda x: x[1])
+sorted_paris = sorted(paris_list, key=lambda x: x[0], reverse=True)
 
 # Print the ranked list of tourist attractions for all cities
 def printCity(list, name):

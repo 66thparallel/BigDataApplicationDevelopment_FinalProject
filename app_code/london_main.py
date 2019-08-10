@@ -186,7 +186,7 @@ class London:
 # Run the trained model on tourist attractions for each city
 London = London()
 london_list = London.getList()
-sorted_london = sorted(london_list, key=lambda x: x[0])
+sorted_london = sorted(london_list, key=lambda x: x[0], reverse=True)
 
 
 # Print the ranked list of tourist attractions for all cities
