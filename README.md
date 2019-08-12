@@ -41,26 +41,24 @@ PySpark SQL, string, re.
 
 # INSTRUCTIONS
 
-1. A batch file scrape.s has been included to run the web scrapers on the Prince cluster. We used only one
-scraper.py file and updated the URLs to point to different tourist attractions for different cities.
+1. A batch file scrape.s has been included to run the web scrapers on the Prince cluster. We used only one scraper.py file and updated the URLs to point to different tourist attractions for different cities.
 
-All input data is located in HDFS in bdad/fp/dataset/.
+    All input data is located in HDFS in bdad/fp/dataset/.
 
-2. It is recommended to run the profiling code (profile.py) line by line in the REPL due to the verbose feedback from
-Spark  when running a script.
+2. It is recommended to run the profiling code (profile.py) line by line in the REPL due to the verbose feedback from Spark  when running a script.
 
-3. Please update the filepath variable with your local file path in london_main.py, paris_main.py, and nyc_main.py.
-It is located in the user-defined function printCity() at the bottom of the file.
+3. Please update the filepath variable with your local file path in london_main.py, paris_main.py, and nyc_main.py. It is located in the user-defined function printCity() at the bottom of the file.
 
-    # Set the file path for the output files
-    filepath = "/home/[net ID]/bdad/fp/website/output/"
+    #### Set the file path for the output files
+    `filepath = "/home/[net ID]/bdad/fp/website/output/"`
 
 4. To run the executable files:
-
+    ```
     cd /opt/cloudera/parcels/SPARK2/bin/
     ./spark2-submit --master local /home/[net ID]/bdad/fp/app_code/london_main.py
     ./spark2-submit --master local /home/[net ID]/bdad/fp/app_code/paris_main.py
     ./spark2-submit --master local /home/[net ID]/bdad/fp/app_code/nyc_main.py
+    ```
 
 5. The output text files (containing a ranked list of tourist attractions) is output to the file path specified
 in #3 above. The files are:
@@ -70,15 +68,15 @@ in #3 above. The files are:
     nyc.txt
 
 6. How to run the website:
-
-    cd website
-    . venv/bin/activate
-    export FLASK_APP=attrac
-    export FLASK_ENV=development
-    set enviromnet variables
-    flask run   # server response should be "Running on http://127.0.0.1:5000/
+    ```
+    $ cd website
+    $ . venv/bin/activate
+    $ pip3 install flask
+    $ export FLASK_APP=attrac
+    $ export FLASK_ENV=development
+    $ flask run   # server response should be "Running on http://127.0.0.1:5000/
 
     # You now can access the site on http://127.0.0.1:5000/
-
+    ```
 # EXPECTED RESULTS
 The multiple logistic regression model has approximately 30 - 67% accuracy depending on the training set.
