@@ -79,4 +79,4 @@ in #3 above. The files are:
     # You now can access the site on http://127.0.0.1:5000/
     ```
 # EXPECTED RESULTS
-The multiple logistic regression model has approximately 30 - 67% accuracy depending on the training set.
+The multinomial logistic regression model has approximately 30 - 67% accuracy depending on the training set.
