@@ -5,9 +5,7 @@ Title: Tourist Attraction Sentiment Analysis with TripAdvisor Reviews
 Authors: Yu-Ting Chiu, Jane Liu
 
 Description: This application uses sentiment analysis to create a ranked list of the best offbeat tourist
-    attractions for Paris, London, and NYC for travel industry professionals. This application was written in Python
-    2.7. The website and scraper were created with Python 3.6. It is unknown if the files will work correctly for
-    other versions of Python.
+    attractions for Paris, London, and NYC for travel industry professionals. This application was written in Apache PySpark, Spark MLlib, and Python 2.7. The website and scraper were created with Python 3.6. It is unknown if the files will work correctly for other versions of Python.
 
 
 # FILES
