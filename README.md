@@ -59,9 +59,9 @@ Please copy all files and folders into the working directory (shown above). The 
 5. The output text files (containing a ranked list of tourist attractions) is output to the file path specified
 in #3 above. The files are:
 
-    london.txt
-    paris.txt
-    nyc.txt
+    london.txt  
+    paris.txt  
+    nyc.txt  
 
 6. How to run the website:
     ```
