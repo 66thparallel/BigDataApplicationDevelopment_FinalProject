@@ -9,8 +9,8 @@ Description: This application uses sentiment analysis to create a ranked list of
 
 
 # FILES
-/home/[NYU netID]/bdad/fp/app_code/london_main.py
-/home/[NYU netID]/bdad/fp/app_code/paris_main.py
+/home/[NYU netID]/bdad/fp/app_code/london_main.py  
+/home/[NYU netID]/bdad/fp/app_code/paris_main.py  
 /home/[NYU netID]/bdad/fp/app_code/nyc_main.py
 /home/[NYU netID]/bdad/fp/data_ingest/scrape.s
 /home/[NYU netID]/bdad/fp/data_ingest/scraper.py
