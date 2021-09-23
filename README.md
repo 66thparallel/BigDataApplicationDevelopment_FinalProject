@@ -9,37 +9,36 @@ Description: This application uses sentiment analysis to create a ranked list of
 
 
 # FILES
-/home/[net ID]/bdad/fp/app_code/london_main.py
-/home/[net ID]/bdad/fp/app_code/paris_main.py
-/home/[net ID]/bdad/fp/app_code/nyc_main.py
-/home/[net ID]/bdad/fp/data_ingest/scrape.s
-/home/[net ID]/bdad/fp/data_ingest/scraper.py
-/home/[net ID]/bdad/fp/etl_code/etl.txt
-/home/[net ID]/bdad/fp/profiling_code/profile.py
-/home/[net ID]/bdad/fp/website/attrac/static/london.jpg
-/home/[net ID]/bdad/fp/website/attrac/static/paris.jpg
-/home/[net ID]/bdad/fp/website/attrac/static/newyork.jpg
-/home/[net ID]/bdad/fp/website/attrac/templates/base.html
-/home/[net ID]/bdad/fp/website/attrac/templates/index.html
-/home/[net ID]/bdad/fp/website/attrac/db.py
-/home/[net ID]/bdad/fp/website/attrac/schema.sql
-/home/[net ID]/bdad/fp/website/instance/flaskr.sqlite
-/home/[net ID]/bdad/fp/website/output/london.txt
-/home/[net ID]/bdad/fp/website/output/paris.txt
-/home/[net ID]/bdad/fp/website/output/nyc.txt
-/home/[net ID]/bdad/fp/website/hello.py
-/home/[net ID]/bdad/fp/website/venv
-/home/[net ID]/bdad/fp/screenshots/[screenshots of the running application]
+/home/[NYU netID]/bdad/fp/app_code/london_main.py
+/home/[NYU netID]/bdad/fp/app_code/paris_main.py
+/home/[NYU netID]/bdad/fp/app_code/nyc_main.py
+/home/[NYU netID]/bdad/fp/data_ingest/scrape.s
+/home/[NYU netID]/bdad/fp/data_ingest/scraper.py
+/home/[NYU netID]/bdad/fp/etl_code/etl.txt
+/home/[NYU netID]/bdad/fp/profiling_code/profile.py
+/home/[NYU netID]/bdad/fp/website/attrac/static/london.jpg
+/home/[NYU netID]/bdad/fp/website/attrac/static/paris.jpg
+/home/[NYU netID]/bdad/fp/website/attrac/static/newyork.jpg
+/home/[NYU netID]/bdad/fp/website/attrac/templates/base.html
+/home/[NYU netID]/bdad/fp/website/attrac/templates/index.html
+/home/[NYU netID]/bdad/fp/website/attrac/db.py
+/home/[NYU netID]/bdad/fp/website/attrac/schema.sql
+/home/[NYU netID]/bdad/fp/website/instance/flaskr.sqlite
+/home/[NYU netID]/bdad/fp/website/output/london.txt
+/home/[NYU netID]/bdad/fp/website/output/paris.txt
+/home/[NYU netID]/bdad/fp/website/output/nyc.txt
+/home/[NYU netID]/bdad/fp/website/hello.py
+/home/[NYU netID]/bdad/fp/website/venv
+/home/[NYU netID]/bdad/fp/screenshots/[screenshots of the running application]
 
 
 # REQUIREMENTS
-Please copy all files and folders into the working directory (shown above). The following libraries are used: PySpark, MLlib,
-PySpark SQL, string, re.
+Please copy all files and folders into the working directory (shown above). The following libraries are used: PySpark, MLlib, PySpark SQL, string, re.
 
 
 # INSTRUCTIONS
 
-1. A batch file scrape.s has been included to run the web scrapers on the Prince cluster. We used only one scraper.py file and updated the URLs to point to different tourist attractions for different cities.
+1. A batch file scrape.s has been included to run the web scrapers on the NYU Prince HPC cluster. We used only one scraper.py file and updated the URLs to point to different tourist attractions for different cities.
 
     All input data is located in HDFS in bdad/fp/dataset/.
 
@@ -48,14 +47,14 @@ PySpark SQL, string, re.
 3. Please update the filepath variable with your local file path in london_main.py, paris_main.py, and nyc_main.py. It is located in the user-defined function printCity() at the bottom of the file.
 
     #### Set the file path for the output files
-    `filepath = "/home/[net ID]/bdad/fp/website/output/"`
+    `filepath = "/home/[NYU netID]/bdad/fp/website/output/"`
 
 4. To run the executable files:
     ```
     cd /opt/cloudera/parcels/SPARK2/bin/
-    ./spark2-submit --master local /home/[net ID]/bdad/fp/app_code/london_main.py
-    ./spark2-submit --master local /home/[net ID]/bdad/fp/app_code/paris_main.py
-    ./spark2-submit --master local /home/[net ID]/bdad/fp/app_code/nyc_main.py
+    ./spark2-submit --master local /home/[NYU netID]/bdad/fp/app_code/london_main.py
+    ./spark2-submit --master local /home/[NYU netID]/bdad/fp/app_code/paris_main.py
+    ./spark2-submit --master local /home/[NYU netID]/bdad/fp/app_code/nyc_main.py
     ```
 
 5. The output text files (containing a ranked list of tourist attractions) is output to the file path specified
