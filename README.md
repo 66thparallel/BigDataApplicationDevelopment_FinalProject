@@ -5,7 +5,7 @@
 **Authors**: Yu-Ting Chiu, Jane Liu
 
 **Description**: This application uses sentiment analysis to create a ranked list of less well-known tourist
-    attractions for Paris, London, and NYC. This application can be used by travel industry professionals to 
+    attractions in Paris, London, and NYC. This application can be used by travel industry professionals to 
     identify emerging travel destinations. The application was written with Apache PySpark, the Spark MLlib machine learning library, 
     and Python 2.7. A web scraper to scrape travel reviews was created with Python 3.6. It is unknown if the files will work correctly 
     for other versions of Python.
