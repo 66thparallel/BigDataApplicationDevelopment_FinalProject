@@ -11,26 +11,25 @@ Description: This application uses sentiment analysis to create a ranked list of
 # FILES
 /home/[NYU netID]/bdad/fp/app_code/london_main.py  
 /home/[NYU netID]/bdad/fp/app_code/paris_main.py  
-/home/[NYU netID]/bdad/fp/app_code/nyc_main.py
-/home/[NYU netID]/bdad/fp/data_ingest/scrape.s
-/home/[NYU netID]/bdad/fp/data_ingest/scraper.py
-/home/[NYU netID]/bdad/fp/etl_code/etl.txt
-/home/[NYU netID]/bdad/fp/profiling_code/profile.py
-/home/[NYU netID]/bdad/fp/website/attrac/static/london.jpg
-/home/[NYU netID]/bdad/fp/website/attrac/static/paris.jpg
-/home/[NYU netID]/bdad/fp/website/attrac/static/newyork.jpg
-/home/[NYU netID]/bdad/fp/website/attrac/templates/base.html
-/home/[NYU netID]/bdad/fp/website/attrac/templates/index.html
-/home/[NYU netID]/bdad/fp/website/attrac/db.py
-/home/[NYU netID]/bdad/fp/website/attrac/schema.sql
-/home/[NYU netID]/bdad/fp/website/instance/flaskr.sqlite
-/home/[NYU netID]/bdad/fp/website/output/london.txt
-/home/[NYU netID]/bdad/fp/website/output/paris.txt
-/home/[NYU netID]/bdad/fp/website/output/nyc.txt
-/home/[NYU netID]/bdad/fp/website/hello.py
-/home/[NYU netID]/bdad/fp/website/venv
-/home/[NYU netID]/bdad/fp/screenshots/[screenshots of the running application]
-
+/home/[NYU netID]/bdad/fp/app_code/nyc_main.py  
+/home/[NYU netID]/bdad/fp/data_ingest/scrape.s  
+/home/[NYU netID]/bdad/fp/data_ingest/scraper.py  
+/home/[NYU netID]/bdad/fp/etl_code/etl.txt  
+/home/[NYU netID]/bdad/fp/profiling_code/profile.py  
+/home/[NYU netID]/bdad/fp/website/attrac/static/london.jpg  
+/home/[NYU netID]/bdad/fp/website/attrac/static/paris.jpg  
+/home/[NYU netID]/bdad/fp/website/attrac/static/newyork.jpg  
+/home/[NYU netID]/bdad/fp/website/attrac/templates/base.html  
+/home/[NYU netID]/bdad/fp/website/attrac/templates/index.html  
+/home/[NYU netID]/bdad/fp/website/attrac/db.py  
+/home/[NYU netID]/bdad/fp/website/attrac/schema.sql  
+/home/[NYU netID]/bdad/fp/website/instance/flaskr.sqlite  
+/home/[NYU netID]/bdad/fp/website/output/london.txt  
+/home/[NYU netID]/bdad/fp/website/output/paris.txt  
+/home/[NYU netID]/bdad/fp/website/output/nyc.txt  
+/home/[NYU netID]/bdad/fp/website/hello.py  
+/home/[NYU netID]/bdad/fp/website/venv  
+/home/[NYU netID]/bdad/fp/screenshots/[screenshots of the running application]  
 
 # REQUIREMENTS
 Please copy all files and folders into the working directory (shown above). The following libraries are used: PySpark, MLlib, PySpark SQL, string, re.
