@@ -1,4 +1,4 @@
-##Final Project for CSCI-GA.3033 Big Data Application Development##
+##Final Project for CSCI-GA.3033 Big Data Application Development
 
 **Title**: Tourist Attraction Sentiment Analysis with TripAdvisor Reviews
 
