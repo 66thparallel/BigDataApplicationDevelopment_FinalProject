@@ -50,10 +50,7 @@ count.append((2, temp2.count()))
 count.append((3, temp3.count()))
 count.append((4, temp4.count()))
 count.append((5, temp5.count()))
-
-# in order to prevent data skew find the maximum number of reviews for each star
-# rating that can be used to train the predictive model.
-min_review = int(min(count,key=lambda x:x[1])[1])
+min_review = int(min(count,key=lambda x:x[1])[1])  # find the smallest number of reviews available for a rating
 
 # build new RDD with equal numbers of labeled reviews
 train1RDD = sc.parallelize(temp1.take(min_review))
