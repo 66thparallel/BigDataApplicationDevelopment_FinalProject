@@ -67,6 +67,7 @@ tempRDD = sc.union([train1RDD, train2RDD, train3RDD, train4RDD, train5RDD])
 trainRDD = tempRDD.map(lambda x: [x[0], x[1], re.sub('[^A-Za-z ]+', '', x[2].lower()), x[3]])
 
 # extract the needed columns (star rating and review text) and convert to dataframe
+# MLLib's multinomial logistic regression tool does not support RDDs
 temp1DF = trainRDD.toDF(["username","rating","review","date"])
 temp2DF = temp1DF.drop("username").drop("date")
 trainDF = temp2DF
