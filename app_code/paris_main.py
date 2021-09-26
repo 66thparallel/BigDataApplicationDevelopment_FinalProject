@@ -3,11 +3,11 @@
 """
 Authors: Yu-Ting Chiu, Jane Liu
 Description: This application uses sentiment analysis to create a ranked list of the best offbeat tourist
-    attractions for Paris, France for travel industry professionals. This predictive model can be used by 
-    travel industry professionals to discover emerging travel destinations. For the training and validation data
-    we used user reviews for London and NYC. Next, we took data from tourist attractions ranked #11 - 30 on
-    TripAdvisor and ran it through our trained model to determine the best unusual/less well-known tourist
-    attractions to visit based on their sentiment score.
+    attractions in Paris, France. This predictive model can be used by travel industry professionals to 
+    discover emerging travel destinations. For the training and validation data we used user reviews for 
+    London and NYC. Next, we took data from tourist attractions ranked #11 - 30 on TripAdvisor and ran it 
+    through our trained model to determine the best unusual/less well-known tourist attractions to visit 
+    based on their sentiment score.
 """
 
 from pyspark import SparkContext, SparkConf
