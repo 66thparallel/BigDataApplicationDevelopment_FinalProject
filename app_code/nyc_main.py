@@ -3,7 +3,8 @@
 """
 Authors: Yu-Ting Chiu, Jane Liu
 Description: This application uses sentiment analysis to create a ranked list of the best offbeat tourist
-    attractions for New York City, USA for travel industry professionals. For the training and validation data
+    attractions for New York City, USA for travel industry professionals. This predictive model can be used by 
+    travel industry professionals to discover emerging travel destinations. For the training and validation data
     we used user reviews for Paris and London. Next, we took data from tourist attractions ranked #11 - 30 on
     TripAdvisor and ran it through our trained model to determine the best unusual/less well-known tourist
     attractions to visit based on their sentiment score.
@@ -50,7 +51,9 @@ count.append((2, temp2.count()))
 count.append((3, temp3.count()))
 count.append((4, temp4.count()))
 count.append((5, temp5.count()))
-min_review = int(min(count,key=lambda x:x[1])[1])  # find the smallest number of reviews available for a rating
+
+# in order to prevent skewed data find the maximum number of reviews that can be used to train the model.
+min_review = int(min(count,key=lambda x:x[1])[1])
 
 # build new RDD with equal numbers of labeled reviews
 train1RDD = sc.parallelize(temp1.take(min_review))
