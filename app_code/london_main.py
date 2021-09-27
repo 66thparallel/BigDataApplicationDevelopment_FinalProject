@@ -36,7 +36,7 @@ splitRDD = trainRDD.map(lambda x: x.split("||"))
 
 # Clean and preprocess
 
-# profile the training set for skew
+# profile the training set for skew. In the code below '10' stands for 1-star review, '20' is a 2-star review, etc.
 count = []
 temp1 = splitRDD.filter(lambda x: x[1]=='10')
 temp2 = splitRDD.filter(lambda x: x[1]=='20')
