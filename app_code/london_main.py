@@ -51,7 +51,7 @@ count.append((3, temp3.count()))
 count.append((4, temp4.count()))
 count.append((5, temp5.count()))
 
-# in order to prevent skewed data find the maximum number of reviews that can be used to train the model.
+# in order to prevent skewed data find the maximum number of reviews for each star rating that can be used to train the model.
 min_review = int(min(count,key=lambda x:x[1])[1])
 
 # build new RDD with equal numbers of labeled reviews
