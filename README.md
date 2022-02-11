@@ -6,8 +6,9 @@
 
 **Description**: This application uses sentiment analysis to create a ranked list of less well-known tourist
     attractions in Paris, London, and New York City. This application can be used by travel industry professionals to 
-    identify emerging travel destinations. The application was written with Apache PySpark, the Spark.ML machine learning library, 
-    and Python 2.7. A web scraper was created to scrape travel reviews from the TripAdvisor website. The web scraper was built using Beautiful Soup and Python 3.6. It is unknown if the files will work correctly for other versions of Python.
+    identify emerging travel destinations. The application was written with Apache PySpark, the MLlib machine learning library, 
+    and Python 2.7. A web scraper built from Beautiful Soup and Python 3.6 was created to scrape travel reviews from the TripAdvisor website. 
+    It is unknown if the files will work correctly for other versions of Python.
 
 
 ### FILES
