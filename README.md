@@ -35,7 +35,7 @@
 /home/[NYU netID]/bdad/fp/screenshots/[screenshots of the running application]  
 
 ### REQUIREMENTS
-Please copy all files and folders into the working directory (shown above). The following libraries are used: PySpark, MLlib, PySpark SQL, string, re.
+Please copy all files and folders into the working directory (shown above). The following libraries are used: PySpark, Spark.ML, PySpark SQL, string, re.
 
 
 ### INSTRUCTIONS
