@@ -6,8 +6,8 @@ Description: This application uses sentiment analysis to create a ranked list of
     attractions in London, UK. This predictive model can be used by travel industry professionals to discover 
     emerging travel destinations. Due to TripAdvisor blocking our webscraper we had less data to work with, 
     so for the training and test data sets we used user reviews for Paris and New York City. Next, we took data 
-    from tourist attractions ranked #11 - 30 on TripAdvisor and ran it through our trained model to determine 
-    the best unusual/less well-known tourist attractions to visit based on their sentiment score.
+    from London's tourist attractions ranked #11 - 30 on TripAdvisor and ran it through our trained model to 
+    determine the best unusual/less well-known tourist attractions to visit based on their sentiment score.
 """
 
 from pyspark import SparkContext, SparkConf
