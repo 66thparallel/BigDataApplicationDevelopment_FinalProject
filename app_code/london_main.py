@@ -4,7 +4,7 @@
 Authors: Yu-Ting Chiu, Jane Liu
 Description: This application uses sentiment analysis to create a ranked list of the best offbeat tourist
     attractions in London, UK. This predictive model can be used by travel industry professionals to discover 
-    emerging travel destinations. For the training and validation data we used user reviews for Paris and NYC. 
+    emerging travel destinations. For the training and test data we used user reviews for Paris and NYC. 
     Next, we took data from tourist attractions ranked #11 - 30 on TripAdvisor and ran it through our trained 
     model to determine the best unusual/less well-known tourist attractions to visit based on their sentiment score.
 """
@@ -78,8 +78,8 @@ remover = StopWordsRemover(inputCol="tok_review", outputCol="stpwd_review")
 stopwordsDF = remover.transform(tokenizedDF)
 finalDF = stopwordsDF
 
-# Split data into training, validation, and test sets
-(train_set, val_set) = finalDF.randomSplit([0.9, 0.1], seed = 2000)
+# Split data into training and test sets
+(train_set, test_set) = finalDF.randomSplit([0.9, 0.1], seed = 2000)
 
 # Set up tf-idf
 tf = HashingTF(numFeatures=2**12, inputCol="stpwd_review", outputCol='tf_review')
@@ -88,16 +88,16 @@ label_stringIdx = StringIndexer(inputCol = "rating", outputCol = "label")
 pipeline = Pipeline(stages=[tf, idf, label_stringIdx])
 pipelineFit = pipeline.fit(train_set)
 train_df = pipelineFit.transform(train_set)
-val_df = pipelineFit.transform(val_set)
+test_df = pipelineFit.transform(test_set)
 ## train_df.show(30)
 
 # Train the classifier
 lr = LogisticRegression(maxIter=100, labelCol="label", featuresCol="features")
 lrModel = lr.fit(train_df)
-predictions = lrModel.transform(val_df)
+predictions = lrModel.transform(test_df)
 model_predict = predictions
 
-# View the predictions of the validation set
+# View the predictions of the test set
 ## model_predict.select(model_predict.columns[:]).show(10)
 
 
@@ -156,7 +156,7 @@ def getScore(rdd):
 
 # Create a class to manage dataframes for each tourist attraction
 class London:
-
+    
     def __init__(self):
         self._lon_imp_RDD = sc.textFile("bdad/fp/dataset/london/Imperial_War_Museums.txt")
         self._lon_parl_RDD = sc.textFile("bdad/fp/dataset/london/Houses_of_Parliament.txt")
